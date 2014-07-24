@@ -1,0 +1,38 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MinTempService WSDL service -->
+
+  <service name="MinTemp" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://tools"/>
+      <parameter name="wsdlServiceElement" value="MinTempService"/>
+      <parameter name="schemaQualified" value="http://tools"/>
+      <parameter name="wsdlServicePort" value="MinTemp"/>
+      <parameter name="className" value="tools.MinTempSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="MinTemp"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="minTemp" qname="operNS:minTemp" xmlns:operNS="http://tools" returnQName="retNS:minTempReturn" xmlns:retNS="http://tools" returnType="rtns:WeatherInfo" xmlns:rtns="http://tools" soapAction="" >
+        <parameter qname="pns:zip" xmlns:pns="http://tools" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:city" xmlns:pns="http://tools" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="minTemp"/>
+
+      <typeMapping
+        xmlns:ns="http://tools"
+        qname="ns:WeatherInfo"
+        type="java:tools.WeatherInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

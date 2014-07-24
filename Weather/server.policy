@@ -1,0 +1,3 @@
+grant codeBase "file:C:/workspace/Weather/-"{
+	permission java.security.AllPermission;
+};

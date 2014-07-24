@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://tools" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://tools" xmlns:intf="http://tools" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://tools" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="CToF">
+    <complexType>
+     <sequence>
+      <element name="C" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="CToFResponse">
+    <complexType>
+     <sequence>
+      <element name="CToFReturn" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="FToC">
+    <complexType>
+     <sequence>
+      <element name="F" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="FToCResponse">
+    <complexType>
+     <sequence>
+      <element name="FToCReturn" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="FToCRequest">
+
+      <wsdl:part element="impl:FToC" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="FToCResponse">
+
+      <wsdl:part element="impl:FToCResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="CToFRequest">
+
+      <wsdl:part element="impl:CToF" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="CToFResponse">
+
+      <wsdl:part element="impl:CToFResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="TempConvert">
+
+      <wsdl:operation name="CToF">
+
+         <wsdl:input message="impl:CToFRequest" name="CToFRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:CToFResponse" name="CToFResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="FToC">
+
+         <wsdl:input message="impl:FToCRequest" name="FToCRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:FToCResponse" name="FToCResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TempConvertSoapBinding" type="impl:TempConvert">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="CToF">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="CToFRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="CToFResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="FToC">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="FToCRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="FToCResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TempConvertService">
+
+      <wsdl:port binding="impl:TempConvertSoapBinding" name="TempConvert">
+
+         <wsdlsoap:address location="http://localhost:8080/WeatherWS/services/TempConvert"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

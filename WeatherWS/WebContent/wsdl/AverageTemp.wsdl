@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://tools" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://tools" xmlns:intf="http://tools" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://tools" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="avgTemp">
+    <complexType>
+     <sequence>
+      <element name="zip" type="xsd:string"/>
+      <element name="city" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="avgTempResponse">
+    <complexType>
+     <sequence>
+      <element name="avgTempReturn" type="impl:WeatherInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="WeatherInfo">
+    <sequence>
+     <element name="a_humidity" nillable="true" type="xsd:string"/>
+     <element name="a_pressure" nillable="true" type="xsd:string"/>
+     <element name="a_rising" nillable="true" type="xsd:string"/>
+     <element name="a_visibility" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="code" nillable="true" type="xsd:string"/>
+     <element name="code1" nillable="true" type="xsd:string"/>
+     <element name="code2" nillable="true" type="xsd:string"/>
+     <element name="country" nillable="true" type="xsd:string"/>
+     <element name="date" nillable="true" type="xsd:string"/>
+     <element name="date1" nillable="true" type="xsd:string"/>
+     <element name="date2" nillable="true" type="xsd:string"/>
+     <element name="day1" nillable="true" type="xsd:string"/>
+     <element name="day2" nillable="true" type="xsd:string"/>
+     <element name="errorMsg" nillable="true" type="xsd:string"/>
+     <element name="ext" nillable="true" type="xsd:string"/>
+     <element name="high1" nillable="true" type="xsd:string"/>
+     <element name="high2" nillable="true" type="xsd:string"/>
+     <element name="latit" nillable="true" type="xsd:string"/>
+     <element name="longit" nillable="true" type="xsd:string"/>
+     <element name="low1" nillable="true" type="xsd:string"/>
+     <element name="low2" nillable="true" type="xsd:string"/>
+     <element name="region" nillable="true" type="xsd:string"/>
+     <element name="sunrise" nillable="true" type="xsd:string"/>
+     <element name="sunset" nillable="true" type="xsd:string"/>
+     <element name="temp" nillable="true" type="xsd:string"/>
+     <element name="text" nillable="true" type="xsd:string"/>
+     <element name="text1" nillable="true" type="xsd:string"/>
+     <element name="text2" nillable="true" type="xsd:string"/>
+     <element name="u_distance" nillable="true" type="xsd:string"/>
+     <element name="u_pressure" nillable="true" type="xsd:string"/>
+     <element name="u_speed" nillable="true" type="xsd:string"/>
+     <element name="u_temperature" nillable="true" type="xsd:string"/>
+     <element name="w_chill" nillable="true" type="xsd:string"/>
+     <element name="w_direction" nillable="true" type="xsd:string"/>
+     <element name="w_speed" nillable="true" type="xsd:string"/>
+     <element name="zip" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="avgTempResponse">
+
+      <wsdl:part element="impl:avgTempResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="avgTempRequest">
+
+      <wsdl:part element="impl:avgTemp" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AverageTemp">
+
+      <wsdl:operation name="avgTemp">
+
+         <wsdl:input message="impl:avgTempRequest" name="avgTempRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:avgTempResponse" name="avgTempResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AverageTempSoapBinding" type="impl:AverageTemp">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="avgTemp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="avgTempRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="avgTempResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AverageTempService">
+
+      <wsdl:port binding="impl:AverageTempSoapBinding" name="AverageTemp">
+
+         <wsdlsoap:address location="http://localhost:8080/WeatherWS/services/AverageTemp"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

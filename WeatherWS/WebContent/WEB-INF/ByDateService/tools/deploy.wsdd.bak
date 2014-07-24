@@ -1,0 +1,38 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ByDateService WSDL service -->
+
+  <service name="ByDate" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://tools"/>
+      <parameter name="wsdlServiceElement" value="ByDateService"/>
+      <parameter name="schemaQualified" value="http://tools"/>
+      <parameter name="wsdlServicePort" value="ByDate"/>
+      <parameter name="className" value="tools.ByDateSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ByDate"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="dataByDate" qname="operNS:dataByDate" xmlns:operNS="http://tools" returnQName="retNS:dataByDateReturn" xmlns:retNS="http://tools" returnType="rtns:WeatherInfo" xmlns:rtns="http://tools" soapAction="" >
+        <parameter qname="pns:zip" xmlns:pns="http://tools" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:city" xmlns:pns="http://tools" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="dataByDate"/>
+
+      <typeMapping
+        xmlns:ns="http://tools"
+        qname="ns:WeatherInfo"
+        type="java:tools.WeatherInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
